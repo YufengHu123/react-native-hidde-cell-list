@@ -12,6 +12,8 @@ import {
     Platform
 }from 'react-native'
 
+import CommRowView from 'CommRowView'
+
 class HiddeListView extends Component{
     constructor(){
         super(props)
@@ -116,7 +118,7 @@ class HiddeListView extends Component{
             );
         } else {
             return (
-                <SwipeRow
+                <CommRowView
                     ref={row => this._rows[key] = row}
                     swipeGestureBegan={ _ => this.rowSwipeGestureBegan(key) }
                     onRowOpen={ _ => this.onRowOpen(key) }
@@ -148,7 +150,7 @@ class HiddeListView extends Component{
                 >
                     {HiddenComponent}
                     {VisibleComponent}
-                </SwipeRow>
+                </CommRowView>
             );
         }
     }
