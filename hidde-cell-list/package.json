@@ -9,13 +9,13 @@
   "keywords": [
     "react-native"
   ],
+  "peerDependencies": {
+    "react-native": "^0.41.2"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/YufengHu123/react-native-hidde-cell-list.git"
   },
   "author": "huyufeng",
-  "license": "MIT",
-  "peerDependencies": {
-    "react-native": "^0.41.2"
-  }
+  "license": "MIT"
 }

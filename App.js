@@ -7,7 +7,8 @@
  */
 
 import React, {Component} from 'react';
-import testFunc from 'react-native-hidde-cell-list'
+// import testFunc from 'react-native-hidde-cell-list'
+import testFunc from './hidde-cell-list'
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
 const instructions = Platform.select({
