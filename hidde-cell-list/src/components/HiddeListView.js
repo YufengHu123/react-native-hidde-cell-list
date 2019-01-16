@@ -5,17 +5,18 @@ Component,
 
 } from 'react'
 import PropTypes from 'prop-types'
-
 import {
     FlatList,
     SectionList,
-    Platform
-}from 'react-native'
+    ListView,
+    Platform,
+    ViewPropTypes,
+} from 'react-native';
 
-import CommRowView from 'CommRowView'
+import CommRowView from './CommRowView'
 
 class HiddeListView extends Component{
-    constructor(){
+    constructor(props){
         super(props)
         this._rows = {};
         this.openCellKey = null;
@@ -237,7 +238,7 @@ class HiddeListView extends Component{
 }
 
 
-SwipeListView.propTypes = {
+HiddeListView.propTypes = {
     /**
      * To render a custom ListView component, if you don't want to use ReactNative one.
      * Note: This will call `renderRow`, not `renderItem`

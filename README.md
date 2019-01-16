@@ -47,7 +47,6 @@
 ```javascript
 import RNHiddeCellList from 'react-native-hidde-cell-list';
 
-// TODO: What to do with the module?
+// 持续更新中设计中,在1.0.0版本会发布稳定版
 RNHiddeCellList;
 ```
-  

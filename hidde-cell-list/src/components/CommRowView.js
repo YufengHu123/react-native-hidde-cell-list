@@ -326,7 +326,7 @@ const styles = StyleSheet.create({
     },
 });
 
-SwipeRow.propTypes = {
+CommRowView.propTypes = {
     /**
      * Used by the SwipeListView to close rows on scroll events.
      * You shouldn't need to use this prop explicitly.
