@@ -1,5 +1,7 @@
 import {createBottomTabNavigator, createStackNavigator, createAppContainer} from 'react-navigation'
-import React from 'react'
+import React,{
+    useState
+} from 'react'
 import FlatListPage from './FlatList/FlatListPage'
 import SectionListPage from "./SectionList/SectionListPage";
 import tabIcon from './Resource'
@@ -11,30 +13,28 @@ import {
 
 const flatListNav = createStackNavigator(
     {
-        home:{
+        A:{
             screen:FlatListPage
         }
     }
 );
+const sectionListNav = createStackNavigator({
+        sectionList: {
+            screen: SectionListPage,
+            defaultNavigationOptions:{
+                title:'sectionList'
+            }
+        },
 
-const aa = createAppContainer(flatListNav);
-//
-// const sectionListNav = createStackNavigator({
-//         sectionList: {
-//             screen: SectionListPage
-//         },
-//
-//     },
-//     {
-//         initialRouteName: "sectionList"
-//     }
-//     )
-//
-// const bb = createAppContainer(sectionListNav);
+    },
+    {
+        initialRouteName: "sectionList"
+    }
+    )
 
 const RootTab = createBottomTabNavigator({
-        FlatList: FlatListPage,
-        Settings: SectionListPage,
+        FlatList: flatListNav,
+        Settings: sectionListNav,
     },
     {
         defaultNavigationOptions: ({navigation}) => ({

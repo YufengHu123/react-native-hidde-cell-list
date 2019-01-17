@@ -9,17 +9,13 @@ export default class FlatListPage extends Component {
 
     constructor(props) {
         super(props)
+        this.state={}
     }
     render() {
         return (
             <View
                 style={styles.contentStyle}
             >
-                <Text
-                style={styles.textStyle}
-                >
-                    FlatList View
-                </Text>
 
             </View>
         )

@@ -233,6 +233,17 @@ class HiddeListView extends Component{
             />
         )
     }
+    setScrollEnabled(enable) {
+        // Due to multiple issues reported across different versions of RN
+        // We do this in the safest way possible...
+        if (this._listView && this._listView.setNativeProps) {
+            this._listView.setNativeProps({scrollEnabled: enable});
+        } else if (this._listView && this._listView.getScrollResponder) {
+            const scrollResponder = this._listView.getScrollResponder();
+            scrollResponder.setNativeProps && scrollResponder.setNativeProps({scrollEnabled: enable});
+        }
+        this.props.onScrollEnabled && this.props.onScrollEnabled(enable);
+    }
 
 
 }
