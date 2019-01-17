@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "react-native"
+    "react-native",
+    "flatList",
+    "react",
+    "sectionList"
   ],
   "peerDependencies": {
     "react-native": "^0.41.2"
@@ -16,6 +19,6 @@
     "type": "git",
     "url": "https://github.com/YufengHu123/react-native-hidde-cell-list.git"
   },
-  "author": "huyufeng",
+  "author": "玉峰",
   "license": "MIT"
 }

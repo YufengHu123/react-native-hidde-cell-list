@@ -47,6 +47,7 @@ export default class SectionListPage extends Component {
                         key: 32
                     }]
             }
+
         ];
     }
 
@@ -75,7 +76,7 @@ export default class SectionListPage extends Component {
                     renderHeaderView={(sectionData) => {
                         console.log('section_header');
                         console.log(sectionData.section);
-                       this._renderHeaderView();
+                       return this._renderHeaderView();
                     }}
                     rightOpenValue={-75}
                 />
@@ -106,6 +107,11 @@ export default class SectionListPage extends Component {
             </View>
         )
     }
+    /**
+     * 渲染隐藏行
+     * @return {*}
+     * @private
+     */
     _renderHiddeItem = () => {
         return (
             <View
@@ -134,14 +140,20 @@ export default class SectionListPage extends Component {
         )
     }
 
+    /**
+     * 渲染组头
+     * @return {*}
+     * @private
+     */
     _renderHeaderView=()=>{
         return (
             <View
                 style={{
-                    width: 75,
-                    height: 80,
+                    width: CommUtil.width,
+                    height: 40,
                     alignItems: 'center',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    backgroundColor:'red'
                 }}
             >
                 <Text>

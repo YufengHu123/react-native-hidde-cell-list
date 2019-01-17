@@ -200,7 +200,7 @@ class HiddeListView extends Component{
                     ref={ c => this.setRefs(c) }
                     onScroll={ e => this.onScroll(e) }
                     renderItem={(rowData) => this.renderItem(rowData, this._rows)}
-                    refreshControl={this.props.swipeRefreshControl || null}
+                    refreshControl={this.props.listRefreshControl || null}
                 />
             );
         }
@@ -212,11 +212,13 @@ class HiddeListView extends Component{
                     {...this.listViewProps}
                     ref={ c => this.setRefs(c) }
                     onScroll={ e => this.onScroll(e) }
-                    // renderItem={(rowData) => this.renderItem(rowData, this._rows)}
                     renderItem={(rowData) => this.renderItem(rowData,this._rows)}
-                    refreshControl={this.props.swipeRefreshControl || null}
-                    renderSectionHeader={this.props.renderHeaderView||null}
+                    refreshControl={this.props.listRefreshControl || null}
+                    renderSectionHeader={
+                        this.props.renderHeaderView||null
+                    }
                     stickySectionHeadersEnabled={this.props.stickyHeadersEnabled||false}
+                    keyExtractor={(item, index) => item + index}
                 />
             );
         }
@@ -228,7 +230,7 @@ class HiddeListView extends Component{
                 ref={ c => this.setRefs(c) }
                 onScroll={ e => this.onScroll(e) }
                 renderRow={(rowData, secId, rowId) => this.renderRow(rowData, secId, rowId, this._rows)}
-                refreshControl={this.props.swipeRefreshControl || null}
+                refreshControl={this.props.listRefreshControl || null}
                 renderHeader={this.props.listHeaderView || null}
             />
         )
@@ -413,10 +415,30 @@ HiddeListView.propTypes = {
      */
     swipeRefreshControl:PropTypes.element,
 
+    /**
+     * 下拉组件
+     */
+    listRefreshControl:PropTypes.element,
+    /**
+     * flatList和sectionList的头部组件
+     */
     listHeaderView:PropTypes.func,
-
+    /**
+     * sectionList的组头 尾部组件
+     */
+    renderGroupFooter:PropTypes.func,
+    /**
+     * sectionList的组头 头部组件
+     */
+    renderGroupHeader:PropTypes.func,
+    /**
+     * list的头部,
+     */
     renderHeaderView:PropTypes.func,
-
+    /**
+     * 仅仅适用于sectionList
+     * 当使用sectionList的时候组头是否滞留 false不滞留 true滞留 默认为false
+     */
     stickyHeadersEnabled:PropTypes.bool
 
 }
