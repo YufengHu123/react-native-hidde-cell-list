@@ -5,11 +5,11 @@
  * @flow
  */
 
-
 import React, {Component} from 'react';
 // import testFunc from 'react-native-hidde-cell-list'
-import HiddeListView from './hidde-cell-list'
-import {Platform, StyleSheet, Text, View, Dimensions} from 'react-native';
+// import HiddeListView from './hidde-cell-list'
+import {StyleSheet, Text, View, Dimensions} from 'react-native';
+import RootTab from './src/RootTab'
 
 const Screen = {
     width: Dimensions.get('window').width,
@@ -61,35 +61,37 @@ export default class App extends Component<Props> {
     render() {
         return (
             <View style={styles.container}>
-                <HiddeListView
-                    useSectionList={true}
-                    disableRightSwipe={true}
-                    renderItem={(rowData, rowMap) => {
-                        return (
-                            <View
-                                style={{
-                                    height: 50,
-                                    width: Screen.width,
-                                    backgroundColor: 'grap'
-                                }}
-                            >
-                            </View>
-                        );
-                    }
-                    }
-                    renderHiddenItem={(data, rowMap) => {
-                        return(
-                            <Text
-                            style={{
-                                color:'red'
-                            }}
-                            >
-                                我是隐藏cell
-                            </Text>
-                        )
-                    }}
-                >
-                </HiddeListView>
+                <RootTab/>
+                {/*<HiddeListView*/}
+                    {/*useSectionList={true}*/}
+                    {/*disableRightSwipe={true}*/}
+                    {/*renderItem={(rowData, rowMap) => {*/}
+                        {/*return (*/}
+                            {/*<View*/}
+                                {/*style={{*/}
+                                    {/*height: 50,*/}
+                                    {/*width: Screen.width,*/}
+                                    {/*backgroundColor: 'grap'*/}
+                                {/*}}*/}
+                            {/*>*/}
+                            {/*</View>*/}
+                        {/*);*/}
+                    {/*}*/}
+                    {/*}*/}
+                    {/*sections={this.dataArr}*/}
+                    {/*renderHiddenItem={(data, rowMap) => {*/}
+                        {/*return(*/}
+                            {/*<Text*/}
+                            {/*style={{*/}
+                                {/*color:'red'*/}
+                            {/*}}*/}
+                            {/*>*/}
+                                {/*我是隐藏cell*/}
+                            {/*</Text>*/}
+                        {/*)*/}
+                    {/*}}*/}
+                {/*>*/}
+                {/*</HiddeListView>*/}
             </View>
         )
     }

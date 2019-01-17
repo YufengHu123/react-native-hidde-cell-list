@@ -3,6 +3,8 @@
 
 ## Getting started
 
+### 此库在开发中,版本到达1.0.0 会发不稳定版本,最终实现支持 FlatList SectionList cell自定义 hiddeCell 自定义
+
 `$ npm install react-native-hidde-cell-list --save`
 
 ### Mostly automatic installation
