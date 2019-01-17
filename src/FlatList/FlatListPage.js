@@ -20,6 +20,7 @@ export default class FlatListPage extends Component {
                 >
                     FlatList View
                 </Text>
+
             </View>
         )
     }
