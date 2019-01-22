@@ -1,7 +1,7 @@
 'use strict'
 
-import React,{
-Component,
+import React, {
+    Component,
 
 } from 'react'
 import PropTypes from 'prop-types'
@@ -15,8 +15,8 @@ import {
 
 import CommRowView from './CommRowView'
 
-class HiddeListView extends Component{
-    constructor(props){
+class HiddeListView extends Component {
+    constructor(props) {
         super(props)
         this._rows = {};
         this.openCellKey = null;
@@ -32,6 +32,7 @@ class HiddeListView extends Component{
             }
         }
     }
+
     safeCloseOpenRow() {
         const rowRef = this._rows[this.openCellKey];
         if (rowRef && rowRef.closeRow) {
@@ -121,13 +122,13 @@ class HiddeListView extends Component{
             return (
                 <CommRowView
                     ref={row => this._rows[key] = row}
-                    swipeGestureBegan={ _ => this.rowSwipeGestureBegan(key) }
-                    onRowOpen={ _ => this.onRowOpen(key) }
-                    onRowDidOpen={ _ => this.props.onRowDidOpen && this.props.onRowDidOpen(key, this._rows)}
-                    onRowClose={ _ => this.props.onRowClose && this.props.onRowClose(key, this._rows) }
-                    onRowDidClose={ _ => this.props.onRowDidClose && this.props.onRowDidClose(key, this._rows) }
-                    onRowPress={ _ => this.onRowPress(key) }
-                    setScrollEnabled={ (enable) => this.setScrollEnabled(enable) }
+                    swipeGestureBegan={_ => this.rowSwipeGestureBegan(key)}
+                    onRowOpen={_ => this.onRowOpen(key)}
+                    onRowDidOpen={_ => this.props.onRowDidOpen && this.props.onRowDidOpen(key, this._rows)}
+                    onRowClose={_ => this.props.onRowClose && this.props.onRowClose(key, this._rows)}
+                    onRowDidClose={_ => this.props.onRowDidClose && this.props.onRowDidClose(key, this._rows)}
+                    onRowPress={_ => this.onRowPress(key)}
+                    setScrollEnabled={(enable) => this.setScrollEnabled(enable)}
                     leftOpenValue={item.leftOpenValue || this.props.leftOpenValue}
                     rightOpenValue={item.rightOpenValue || this.props.rightOpenValue}
                     closeOnRowPress={item.closeOnRowPress || this.props.closeOnRowPress}
@@ -169,8 +170,8 @@ class HiddeListView extends Component{
     renderItem(rowData, rowMap) {
         const Component = this.props.renderItem(rowData, rowMap);
         const HiddenComponent = this.props.renderHiddenItem && this.props.renderHiddenItem(rowData, rowMap);
-        let { item, index } = rowData;
-        let { key } = item;
+        let {item, index} = rowData;
+        let {key} = item;
         if (!key && this.props.keyExtractor) {
             key = this.props.keyExtractor(item, index);
         }
@@ -181,7 +182,7 @@ class HiddeListView extends Component{
     }
 
     render() {
-        const { useFlatList, useSectionList, renderListView, ...props } = this.props;
+        const {useFlatList, useSectionList, renderListView, ...props} = this.props;
 
         if (renderListView) {
             return renderListView(
@@ -193,31 +194,73 @@ class HiddeListView extends Component{
         }
 
         if (useFlatList) {
+            const {
+                stickyHeadersEnabled,
+                renderSectionSeparatorComponent,
+                listHeaderView
+            } = this.props
             return (
                 <FlatList
                     {...props}
                     {...this.listViewProps}
-                    ref={ c => this.setRefs(c) }
-                    onScroll={ e => this.onScroll(e) }
+                    ref={c => this.setRefs(c)}
+                    onScroll={e => this.onScroll(e)}
                     renderItem={(rowData) => this.renderItem(rowData, this._rows)}
-                    refreshControl={this.props.listRefreshControl || null}
+                    refreshControl={
+                        this.props.listRefreshControl || null
+                    }
+                    SectionSeparatorComponent={
+                        renderSectionSeparatorComponent || null
+                    }
+                    stickySectionHeadersEnabled={
+                        stickyHeadersEnabled || false
+                    }
+                    ListHeaderComponent={
+                        listHeaderView || null
+                    }
                 />
             );
         }
 
         if (useSectionList) {
+            const {
+                stickyHeadersEnabled,
+                renderGroupHeader,
+                renderGroupFooter,
+                renderHeaderView,
+                renderSectionSeparatorComponent,
+                listHeaderView
+            } = this.props
             return (
                 <SectionList
                     {...props}
                     {...this.listViewProps}
-                    ref={ c => this.setRefs(c) }
-                    onScroll={ e => this.onScroll(e) }
-                    renderItem={(rowData) => this.renderItem(rowData,this._rows)}
-                    refreshControl={this.props.listRefreshControl || null}
-                    renderSectionHeader={
-                        this.props.renderHeaderView||null
-                    }
-                    stickySectionHeadersEnabled={this.props.stickyHeadersEnabled||false}
+                    ref={c => this.setRefs(c)}
+                    onScroll={e => this.onScroll(e)}
+                    renderItem={(rowData) => this.renderItem(rowData, this._rows)}
+
+                    // refreshControl={
+                    //     this.props.listRefreshControl || null
+                    // }
+                    // renderSectionHeader={
+                    //     renderGroupHeader || null
+                    // }
+                    // renderSectionFooter={
+                    //     renderGroupFooter || null
+                    // }
+                    // ListHeaderComponent={
+                    //     renderHeaderView || null
+                    // }
+                    // SectionSeparatorComponent={
+                    //     renderSectionSeparatorComponent || null
+                    // }
+                    // stickySectionHeadersEnabled={
+                    //     stickyHeadersEnabled || false
+                    // }
+                    // ListHeaderComponent={
+                    //     listHeaderView || null
+                    // }
+
                     keyExtractor={(item, index) => item + index}
                 />
             );
@@ -227,14 +270,15 @@ class HiddeListView extends Component{
             <ListView
                 {...props}
                 {...this.listViewProps}
-                ref={ c => this.setRefs(c) }
-                onScroll={ e => this.onScroll(e) }
+                ref={c => this.setRefs(c)}
+                onScroll={e => this.onScroll(e)}
                 renderRow={(rowData, secId, rowId) => this.renderRow(rowData, secId, rowId, this._rows)}
                 refreshControl={this.props.listRefreshControl || null}
                 renderHeader={this.props.listHeaderView || null}
             />
         )
     }
+
     setScrollEnabled(enable) {
         // Due to multiple issues reported across different versions of RN
         // We do this in the safest way possible...
@@ -413,34 +457,46 @@ HiddeListView.propTypes = {
     /**
      * 下拉组件
      */
-    swipeRefreshControl:PropTypes.element,
+    swipeRefreshControl: PropTypes.element,
 
     /**
      * 下拉组件
      */
-    listRefreshControl:PropTypes.element,
+    listRefreshControl: PropTypes.element,
     /**
      * flatList和sectionList的头部组件
      */
-    listHeaderView:PropTypes.func,
+    listHeaderView: PropTypes.func,
     /**
      * sectionList的组头 尾部组件
      */
-    renderGroupFooter:PropTypes.func,
+    renderGroupFooter: PropTypes.func,
     /**
      * sectionList的组头 头部组件
      */
-    renderGroupHeader:PropTypes.func,
+    renderGroupHeader: PropTypes.func,
     /**
      * list的头部,
      */
-    renderHeaderView:PropTypes.func,
+    renderHeaderView: PropTypes.func,
     /**
      * 仅仅适用于sectionList
      * 当使用sectionList的时候组头是否滞留 false不滞留 true滞留 默认为false
      */
-    stickyHeadersEnabled:PropTypes.bool
+    stickyHeadersEnabled: PropTypes.bool,
 
+    /**
+     * 是否使用sectionList 默认false
+     */
+    useSectionList: PropTypes.bool,
+    /**
+     * 是否使用flatList
+     */
+    useFlatList: PropTypes.bool,
+    /**
+     * sectionList 组与组的分割组件
+     */
+    renderSectionSeparatorComponent: PropTypes.func,
 }
 HiddeListView.defaultProps = {
     leftOpenValue: 0,

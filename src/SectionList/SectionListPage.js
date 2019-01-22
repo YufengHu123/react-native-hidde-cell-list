@@ -60,7 +60,6 @@ export default class SectionListPage extends Component {
                 <HiddeListView
                     extraData={this.state}
                     style={{
-                        // width: CommUtil.screenWidth,
                         backgroundColor:'#efefef',
                         flex:1
                     }}
@@ -73,11 +72,14 @@ export default class SectionListPage extends Component {
                     renderHiddenItem={(data, rowMap) => (
                         this._renderHiddeItem(data, rowMap)
                     )}
-                    renderHeaderView={(sectionData) => {
-                        console.log('section_header');
+                    renderGroupHeader={(sectionData) => {
                         console.log(sectionData.section);
-                       return this._renderHeaderView();
+                       return this._renderGroupHeaderView();
                     }}
+                    listHeaderView={()=>{
+                      return  this._renderListHeader()
+                    }
+                    }
                     rightOpenValue={-75}
                 />
             </View>
@@ -104,6 +106,33 @@ export default class SectionListPage extends Component {
                     <Text>
                         我是cell组
                     </Text>
+            </View>
+        )
+    }
+    _renderListHeader=()=>{
+        return (
+            <View
+                style={{
+                    marginTop:5,
+                    height: 80,
+                    width:CommUtil.width,
+                    backgroundColor:'gray',
+                    alignItems:'center',
+                    flexDirection: 'row',
+                    justifyContent: 'center'
+                }}
+            >
+                <View
+                    style={{
+                        alignItems:'center',
+                        justifyContent:'center',
+                        marginRight:10
+                    }}
+                >
+                    <Text>
+                       我是头部视图
+                    </Text>
+                </View>
             </View>
         )
     }
@@ -145,7 +174,7 @@ export default class SectionListPage extends Component {
      * @return {*}
      * @private
      */
-    _renderHeaderView=()=>{
+    _renderGroupHeaderView=()=>{
         return (
             <View
                 style={{

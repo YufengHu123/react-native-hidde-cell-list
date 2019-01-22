@@ -103,8 +103,6 @@ class CommRowView extends Component {
         const absDx = Math.abs(dx);
         const absDy = Math.abs(dy);
 
-        // this check may not be necessary because we don't capture the move until we pass the threshold
-        // just being extra safe here
         if (absDx > this.props.directionalDistanceChangeThreshold || absDy > this.props.directionalDistanceChangeThreshold) {
             // we have enough to determine direction
             if (absDy > absDx && !this.horizontalSwipeGestureBegan) {
