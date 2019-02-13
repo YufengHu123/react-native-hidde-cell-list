@@ -42,7 +42,6 @@ const RootTab = createBottomTabNavigator({
                 const {routeName} = navigation.state;
                 let iconName;
                 if (routeName === 'FlatList') {
-
                     iconName = focused ? tabIcon.home_s : tabIcon.home_n;
                 } else if (routeName === 'Settings') {
                     iconName = focused ? tabIcon.mine_s : tabIcon.mine_n;
